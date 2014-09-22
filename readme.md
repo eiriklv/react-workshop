@@ -2,6 +2,8 @@
 
 Dette repoet inneholder alt materiale brukt i workshop om React.js for JavaScript & webteknologi-gruppa 23. september 2014.
 
+Slides ligger [her](https://github.com/ewendel/react-workshop/slides/slides.pdf)
+
 Start med å klone repoet:
 
 ```
@@ -14,26 +16,16 @@ For å installere prosjektets avhengigheter, kjør
 npm install
 ```
 
-For å kjøre watcheren som kontinuerlig bygger frontendkoden din, kjør
-
+Start serveren:
 
 ```
-npm run watch
+node app.js
 ```
-
-## Structure
-
-The repo is organized like this:
-- `app.js`: Main file. Starts the server.
-- `/bin`: Various build scripts.
-- `/browser`: All browser code: Sass and JSX files.
-- `/public`: Publicly available static assets: build output and images.
-- `/routes`: Express route definitions.
-- `/test`: Mocha specs.
-- `/views`: Server side views. Written with [PEJS](https://github.com/gett/pejs).
 
 
 ## Oppgaver
+
+Oppgavetekstene ligger her i `README.md`, og det er laget ferdig index.html, script.js og styles.css i en mappe per oppgave som ligger under `react-workshop/tasks/`. I disse filene er React og JSX-Transformer dratt inn. JSX-transformeren sørger for å gjøre om JSX-koden din til ren javascript, og er et alternativ til å gjøre dette serverside under utvikling.
 
 Underveis i oppgavene kan det være greit å kikke innom [dokumentasjonen](http://facebook.github.io/react/docs/).
 
@@ -97,11 +89,13 @@ Komponenten skal inneholde et tekstfelt, og endringer i tekstfeltet skal filtrer
 </div>
 ```
 
+Sett også fokus på inputfeltet etter at siden er lastet.
+
 #### Tips
 
 Interessante metoder: `String.prototype.match, Array.prototype.filter`
 
-Attributter i JSX: `onChange`, `className` (da class er et reserved keyword i JS)
+Attributter i JSX: `onChange`, `refs`, `className` (da class er et reserved keyword i JS)
 
 ## Oppgave 5: Komponentgjenbruk, ajax & events
 
@@ -128,3 +122,39 @@ I tillegg skal `.favorites` inneholde en melding når ingen bilder er favorittma
 ```html
 <p>Click an image to mark it as a favorite.</p>
 ```
+
+Bruk så [`React.addons.classSet`](http://facebook.github.io/react/docs/addons.html) til å sette klassenavn på DOM-nodene.
+
+## Mer React
+
+Konsepter / API-kall å lese mer om:
+
+* setState() vs replaceState()
+* forceUpdate()
+* shouldComponentUpdate()
+* key-attributten
+* reconciliation (diffing)
+
+### Artikler
+
+* [Reacts diff algorithm](http://calendar.perfplanet.com/2013/diff/)
+* [Removing User Interface Complexity, or Why React is Awesome] (http://jlongster.com/Removing-User-Interface-Complexity,-or-Why-React-is-Awesome)
+* [Om ClojureScript og funksjonell programmering i React] (http://blog.getprismatic.com/om-sweet-om-high-functional-frontend-engineering-with-clojurescript-and-react/)
+
+### Apper
+
+Det finnes lite eksempelapper av litt størrelse på nettet. Her er to apper jeg har skrevet det siste halvåret som man kan ta en titt på om man ønsker. Si ifra til meg, så skal dere få tilgang!
+
+* [Banebooking.net](www.banebooking.net)
+* [BEKK Fagdag](https://fagdag.bekk.no)
+
+### Videoer
+
+Pete Hunt jobber i Instagram og en av hovedbidragsyterne til React. Han har vært land og strand det siste året og holdt talks. Her er et utdrag:
+
+* [The Secrets of React's Virtual DOM](https://www.youtube.com/watch?v=-DX3vJiqxm4)
+* [Rethinking Best Practices](https://www.youtube.com/watch?v=x7cQ3mrcKaY)
+* [Be Predictable, Not Correct](https://www.youtube.com/watch?v=h3KksH8gfcQ)
+* [How Instagram.com Works](https://www.youtube.com/watch?v=VkTCL6Nqm6Y)
+* [High performance functional programming with React and Meteor](https://www.youtube.com/watch?v=qqVbr_LaCIo)
+
