@@ -89,10 +89,10 @@ Lag en komponent `Search` som tar inn et array `items`. Elementene i items er p�
 Komponenten skal inneholde et tekstfelt, og endringer i tekstfeltet skal filtrere hvilke av elementene i `items` som vises. Se under for HTML-struktur:
 
 ```html
-<div class="search-items">
+<div>
 	<input type="text" />
 		<ul> 
-			return <li class="search-item"><a ...></a></li>
+			return <li><a ...></a></li>
 		</ul>
 </div>
 ```
@@ -109,7 +109,7 @@ Lag et bildegalleri som henter populære bilder fra Instagram. Ved klikk på et 
 
 `https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=?`
 
-API-nøkkelen skal sendes inn som parameter til komponenten. HTML-strukturen skal være som vist under.
+Bruk minst to komponenter, og API-nøkkelen skal sendes inn som parameter til toppnivåkomponenten. HTML-strukturen skal være som vist under.
 
 ```html
 <div class="pictures">
@@ -128,7 +128,3 @@ I tillegg skal `.favorites` inneholde en melding når ingen bilder er favorittma
 ```html
 <p>Click an image to mark it as a favorite.</p>
 ```
-
-## Credits
-
-Repoet er basert på en [boilerplate](https://github.com/jmosbech/react-boilerplate) for React laget av [jmosbech](https://github.com/jmosbech).
