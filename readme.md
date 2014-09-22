@@ -35,9 +35,49 @@ The repo is organized like this:
 
 ## Oppgaver
 
-### Oppgave 1: Bli kjent med komponenter
+Underveis i oppgavene kan det være greit å kikke innom [dokumentasjonen](http://facebook.github.io/react/docs/).
 
-Lag en enkel React-komponent som kun skriver ut ```Hello World``` til skjermen.
+## Oppgave 1: Bli kjent med komponenter
+
+Lag en enkel React-komponent som kun skriver ut `Hello World` til skjermen.
+
+#### Tips
+
+Husk JSX-headsup i første linje:<br>
+`/** @jsx React.DOM */`
+
+Interessante metoder: 
+`React.createClass`, `React.renderComponent`
+
+## Oppgave 2: Data i React
+
+Utvid komponenten til å ta inn en property `name` og skrive ut `Hello, {name}`.<br>
+Dersom ikke komponenten mottar noe name-parameter skal den skrive ut det samme som i oppgave 1.
+
+Lag så en komponent `Helloes` som tar en property `names` og bruker komponenten fra oppgave 2 til å skrive ut `Hello, {name}` på en ny linje for hvert navn i arrayet.
+
+#### Tips
+
+`props` brukes til å holde immutable data
+
+`render()` må returnere kun én node på toppnivå
+
+## Opgave 3: Timer
+
+Lag en komponent `Timer` som skriver ut mengden tid siden komponenten ble startet. Eksempel:
+
+`I was started 7.8 seconds ago`
+
+Komponenten skal oppdatere seg ti ganger/sekund.
+
+#### Tips
+
+Interessante metoder:
+`setInterval clearInterval`
+
+Lifecycle hooks:
+`componentDidMount` `componentDidUnmount`
+
 
 ## Credits
 
