@@ -1,46 +1,28 @@
-# react-boilerplate
-This repo contains the skeleton for a web app built with React, Node.js, Express, Browserify, and Sass.
+# react-workshop
 
-[![Dependency Status](https://david-dm.org/jmosbech/react-boilerplate.svg)](https://david-dm.org/jmosbech/react-boilerplate)
+Dette repoet inneholder alt materiale brukt i workshop om React.js for JavaScript & webteknologi-gruppa 23. september 2014.
 
-## Install
+Start med å klone repoet:
 
-1) Fetch from GitHub into cwd:
 ```
-curl -L https://github.com/jmosbech/react-boilerplate/tarball/master | tar zx --strip-components=1
+https://github.com/ewendel/react-workshop.git
 ```
 
-2) Install dependencies:
+For å installere prosjektets avhengigheter, kjør 
+
 ```
 npm install
 ```
 
-3) Start hacking
+For å kjøre watcheren som kontinuerlig bygger frontendkoden din, kjør
 
-## Usage
-
-### Start
-Starting the app is easy, but remember to build the bundles first (see below):
-
-```
-node .
-```
-
-### Build
-To build CSS and JavaScript bundles before deploying to production:
-
-```
-npm run build
-```
-
-### Watch
-To automatically rebuild CSS and JavaScript bundles while developing, start the app using:
 
 ```
 npm run watch
 ```
 
 ## Structure
+
 The repo is organized like this:
 - `app.js`: Main file. Starts the server.
 - `/bin`: Various build scripts.
@@ -50,5 +32,13 @@ The repo is organized like this:
 - `/test`: Mocha specs.
 - `/views`: Server side views. Written with [PEJS](https://github.com/gett/pejs).
 
-## License
-MIT
+
+## Oppgaver
+
+### Oppgave 1: Bli kjent med komponenter
+
+Lag en enkel React-komponent som kun skriver ut ```Hello World``` til skjermen.
+
+## Credits
+
+Repoet er basert på en [boilerplate](https://github.com/jmosbech/react-boilerplate) for React laget av [jmosbech](https://github.com/jmosbech).
