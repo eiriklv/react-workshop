@@ -25,13 +25,17 @@ node app.js
 
 ## Oppgaver
 
-Oppgavetekstene ligger her i `README.md`, og det er laget ferdig index.html, script.js og styles.css i en mappe per oppgave som ligger under `react-workshop/tasks/`. I disse filene er React og JSX-Transformer dratt inn. JSX-transformeren sørger for å gjøre om JSX-koden din til ren javascript, og er et alternativ til å gjøre dette serverside under utvikling.
+Oppgavetekstene ligger her i `README.md`, og det er laget ferdig index.html, script.js og styles.css i en mappe per oppgave som ligger under `react-workshop/tasks/`. I disse filene er både React og en JSX-Transformator for utvikling dratt inn, så vi slipper å bygge frontenden vår kontinuerlig. Noen av oppgavene utleveres med en del CSS, slik at det i utgangspunktet skal være unødvendig å skrive noe mer css.
 
-Underveis i oppgavene kan det være greit å kikke innom [dokumentasjonen](http://facebook.github.io/react/docs/).
+Disse filene kan nås via f.eks `http://localhost:3000/{oppgavenr}/index.html`
+
+Man kan også bruke f.eks [JSFiddle](www.jsfiddle.net) til å gjøre oppgavene om ønskelig.
+
+**Underveis i oppgavene kan det være greit å kikke innom [dokumentasjonen](http://facebook.github.io/react/docs/) til React.**
 
 ## Oppgave 1: Bli kjent med komponenter
 
-Lag en enkel React-komponent som kun skriver ut `Hello World` til skjermen.
+Lag en enkel React-komponent som kun skriver ut `Hello World` til DOM-en.
 
 #### Tips
 
@@ -132,7 +136,7 @@ Konsepter / API-kall å lese mer om:
 * setState() vs replaceState()
 * forceUpdate()
 * shouldComponentUpdate()
-* key-attributten
+* key-attributes
 * reconciliation (diffing)
 
 ### Artikler
@@ -143,7 +147,7 @@ Konsepter / API-kall å lese mer om:
 
 ### Apper
 
-Det finnes lite eksempelapper av litt størrelse på nettet. Her er to apper jeg har skrevet det siste halvåret som man kan ta en titt på om man ønsker. Si ifra til meg, så skal dere få tilgang!
+Det finnes få eksempelapper av litt størrelse på nettet. Her er to apper jeg har skrevet det siste halvåret som man kan ta en titt på om man ønsker. Si ifra til meg, så skal dere få tilgang!
 
 * [Banebooking.net](www.banebooking.net)
 * [BEKK Fagdag](https://fagdag.bekk.no)
