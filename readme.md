@@ -68,7 +68,7 @@ Lag en komponent `Timer` som skriver ut mengden tid som er gått siden komponent
 
 `I was started 7.8 seconds ago`
 
-Komponenten skal oppdatere seg ti ganger/sekund, og komponenten skal rydde opp etter seg når den unmountes.
+Komponenten skal oppdatere seg ti ganger i sekundet, og komponenten skal rydde opp etter seg når den unmountes.
 
 #### Tips
 
