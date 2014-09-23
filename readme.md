@@ -129,6 +129,22 @@ I tillegg skal `.favorites` inneholde en melding når ingen bilder er favorittma
 
 Bruk så [`React.addons.classSet`](http://facebook.github.io/react/docs/addons.html) til å sette klassenavn på DOM-nodene.
 
+## Oppgave 6: Zombies!
+
+Denne oppgaven er litt løsere definert, men du skal lage et todimensjonalt brettspill. Og Zombies!
+
+Spillebrettet kan være av vilkårlig størrelse, men skal inneholde en eller flere zombies. Cellene på brettet skal være av typen `div.cell`, og zombiefiserte celler `div.cell.zombie`. Posisjonen til spilleren bør ha klassen `.player` (om du ikke du ønsker å spille i blinde for å gjøre det ekstra vanskelig). Bruk piltastene til å styre spilleren rundt.
+
+Om du ønsker å bruke f.eks `div.axe` for å plassere powerups på brettet er dette selvsagt helt innafor. En øks kan for eksempel brukes til å hogge ned tre zombies før den knekker og blir ødelagt (kun lavkvalitets verktøy i postapokalypsen). 
+
+Hva som er spillets mål, og om det blir eventuelle ekstra regler er opp til deg. (Vegger, pathfinding, AI, fog-of-war?)
+
+Et eksempel på hvordan et brett kan se ut ligger i `tasks/zombies!/index.html`
+
+Dersom du ikke er så glad i zombies, eller har mer lyst til å gjøre noe annet, kan du selvsagt bruke resten av tiden til å kode en annen app i React, lese mer på dokumentasjonen eller titte litt på kildekoden til f.eks fagdagsappen for å se på hvordan en "ekte" app kan se ut.
+
+<hr>
+
 ## Mer React
 
 Konsepter / API-kall å lese mer om:
