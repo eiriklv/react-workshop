@@ -1,3 +1,29 @@
+/*
+
+## Oppgave 4: Mer tilstand: Sanntidsøk
+
+    Lag en komponent Search som tar inn et array items. Elementene i items er på formen { name: "Some string", url: "www.somesite.com" }
+
+    Komponenten skal inneholde et tekstfelt, og endringer i tekstfeltet skal filtrere hvilke av elementene i items som vises. Se under for HTML-struktur:
+
+    <div>
+        <input type="text" />
+            <ul> 
+                return <li><a ...></a></li>
+            </ul>
+    </div>
+    
+
+    Sett også fokus på inputfeltet etter at siden er lastet.
+
+    #### Tips
+
+    Interessante metoder: String.prototype.match, Array.prototype.filter
+
+    Attributter i JSX: onChange, refs, className (da class er et reserved keyword i JS)
+
+*/
+
 var libraries = [
     { name: 'Backbone.js', url: 'http://documentcloud.github.io/backbone/'},
     { name: 'AngularJS', url: 'https://angularjs.org/'},
