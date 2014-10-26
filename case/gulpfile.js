@@ -3,7 +3,6 @@ var del = require('del');
 var gulp = require('gulp');
 var myth = require('gulp-myth');
 var util = require('gulp-util');
-var esnext = require('esnext');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
@@ -75,8 +74,7 @@ function browserifyTask(options) {
             extensions: ['.jsx'],
             debug: true
         })
-        .transform(reactify)
-        .transform(esnext);
+        .transform(reactify);
 
         if (watch) {
             bundler = watchify(bundler)
