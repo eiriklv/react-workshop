@@ -62,7 +62,7 @@ Husk at man kan bruke vanlig JS i JSX ved å bruke `{ }`
 
 Interessante metoder: `Array.prototype.map`
 
-## Opgave 3: Tilstandsfulle komponenter: Timer
+## Oppgave 3: Tilstandsfulle komponenter: Timer
 
 Lag en komponent `Timer` som skriver ut mengden tid som er gått siden komponenten ble startet. Eksempel:
 
@@ -101,49 +101,20 @@ Interessante metoder: `String.prototype.match, Array.prototype.filter`
 
 Attributter i JSX: `onChange`, `refs`, `className` (da class er et reserved keyword i JS)
 
-## Oppgave 5: Komponentgjenbruk, ajax & events
 
-Lag et bildegalleri som henter populære bilder fra Instagram. Ved klikk på et bilde skal dette bildet markeres som favoritt og vises i en egen liste med bilder. Favorittmarkeringen kan fjernes ved å klikke på bildet igjen i en av listene. Bilder kan hentes ved å gå mot følgende endepunkt:
 
-`https://api.instagram.com/v1/media/popular?client_id=642176ece1e7445e99244cec26f4de1f&callback=?`
+--
+# Caseoppgave
 
-Bruk minst to komponenter, og API-nøkkelen skal sendes inn som parameter til toppnivåkomponenten. HTML-strukturen skal være som vist under.
+Vi skal lage en interaktiv app som benytter blant annet Twitter og Google Maps.
 
-```html
-<div class="pictures">
-	<div class="picture"><img ... /></div>
-	...
-</div>
+## Oppgave 1
 
-<div class="favorites">
-	<div class="picture favorite"><img ... /></div>
-	...
-</div>
-```
+Lag en komponent som tar inn en Tweet og viser denne. Komponenten skal også huske om tweeten er favorittmarkert. Tweeten skal ha følgende markupstruktur:
 
-I tillegg skal `.favorites` inneholde en melding når ingen bilder er favorittmarkert:
 
-```html
-<p>Click an image to mark it as a favorite.</p>
-```
 
-Bruk så [`React.addons.classSet`](http://facebook.github.io/react/docs/addons.html) til å sette klassenavn på DOM-nodene.
-
-## Oppgave 6: Zombies!
-
-Denne oppgaven er litt løsere definert, men du skal lage et todimensjonalt brettspill. Og Zombies!
-
-Spillebrettet kan være av vilkårlig størrelse, men skal inneholde en eller flere zombies. Cellene på brettet skal være av typen `div.cell`, og zombiefiserte celler `div.cell.zombie`. Posisjonen til spilleren bør ha klassen `.player` (om du ikke du ønsker å spille i blinde for å gjøre det ekstra vanskelig). Bruk piltastene til å styre spilleren rundt.
-
-Om du ønsker å bruke f.eks `div.axe` for å plassere powerups på brettet er dette selvsagt helt innafor. En øks kan for eksempel brukes til å hogge ned tre zombies før den knekker og blir ødelagt (kun lavkvalitets verktøy i postapokalypsen). 
-
-Hva som er spillets mål, og om det blir eventuelle ekstra regler er opp til deg. (Vegger, pathfinding, AI, fog-of-war?)
-
-Et eksempel på hvordan et brett kan se ut ligger i `tasks/zombies!/index.html`
-
-Dersom du ikke er så glad i zombies, eller har mer lyst til å gjøre noe annet, kan du selvsagt bruke resten av tiden til å kode en annen app i React, lese mer på dokumentasjonen eller titte litt på kildekoden til f.eks fagdagsappen for å se på hvordan en "ekte" app kan se ut.
-
-<hr>
+--
 
 ## Mer React
 
@@ -165,7 +136,7 @@ Konsepter / API-kall å lese mer om:
 
 Det finnes få eksempelapper av litt størrelse på nettet. Her er to apper jeg har skrevet det siste halvåret som man kan ta en titt på om man ønsker. Si ifra til meg, så skal dere få tilgang!
 
-* [Banebooking.net](www.banebooking.net)
+* [Banebooking.net](https://www.banebooking.net)
 * [BEKK Fagdag](https://fagdag.bekk.no)
 
 ### Videoer
