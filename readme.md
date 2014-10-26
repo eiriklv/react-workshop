@@ -2,7 +2,7 @@
 
 Dette repoet inneholder alt materiale brukt i workshop om React.js for JavaScript & webteknologi-gruppa 23. september 2014.
 
-Slides ligger [her](https://github.com/ewendel/react-workshop/slides/slides.pdf)
+Slides ligger [her](https://github.com/ewendel/react-workshop/blob/master/slides/slides.pdf?raw=true)
 
 Start med å klone repoet:
 
