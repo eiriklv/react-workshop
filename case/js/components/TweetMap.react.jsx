@@ -23,7 +23,7 @@ var TweetMap = React.createClass({
 
             return <Marker
                 onClick={ callback }
-                position={new GoogleMapsAPI.LatLng(t.geo.coordinates[1], t.geo.coordinates[0])} />
+                position={new GoogleMapsAPI.LatLng(t.geo.coordinates[0], t.geo.coordinates[1])} />
         });
 
         return <div className="container">

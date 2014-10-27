@@ -59,13 +59,9 @@ function pushTo(ws) {
         if (Math.random()>0.2) return;
         if (tweet.coordinates == null) return;
         if (tweet.place == null) return;
-        console.log(tweet.place.name, ',', tweet.place.country);
+        console.log(tweet);
 
-        var tw = {
-            text: tweet.text,
-            geo: tweet.coordinates,
-            id: tweet.id
-        };
+        var tw = _.pick(tweet, 'id', 'text', 'geo', 'place', 'user', 'entities', 'lang');
         ws.send(JSON.stringify(tw));
     }
 };
