@@ -3,12 +3,17 @@ var React = require('react');
 
 var countries = require('../util/countries');
 var Flag = require('./Flag.react');
+var starred = require('../starredTweets');
 
 module.exports = React.createClass({
 
     // ettersom vi rendrer på nytt hver gang vi mottar nye tweets fra backend
     shouldComponentUpdate: function(nextProps, nextState) {
         return this.props.tweet !== nextProps.tweet;
+    },
+
+    save: function() {
+        starred.add(this.props.tweet);
     },
 
     render: function() {
@@ -19,7 +24,7 @@ module.exports = React.createClass({
                 <img className="tweet-image" src={tweet.user.profile_image_url} />
                 <div className="tweet-image-offset tweet-name">{ tweet.user.name }</div>
                 <div className="tweet-image-offset tweet-screen-name">@{ tweet.user.screen_name }</div>
-                <a className="tweet-follow-button"><i/>Follow</a>
+                <a className="tweet-follow-button" onClick={this.save}><i/>Save</a>
             </div>
 
             <div className="tweet-text">{ tweet.text }</div>

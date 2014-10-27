@@ -5,24 +5,15 @@ var Twit = require('twit');
 var WebSocketServer = require('ws').Server
 var twitterConfig = require('./twitter.json');
 var util = require('util');
+var historyApiFallback = require('connect-history-api-fallback');
+historyApiFallback.setLogger(console.log.bind(console));
 
 var T = new Twit(twitterConfig);
 
 var app = express();
 app.use(express.static('dist'));
+app.use(historyApiFallback);
 app.use(express.static('public'));
-
-app.get('/hello', function(req, res) {
-    return res.send('world');
-});
-
-app.use(function(req, res, next) {
-    if (req.accepts('html', 'json') == 'html' && req.method == "GET") {
-        console.log('Routing ' + req.url + ' to index.html');
-        req.url = './index.html'
-    }
-    next();
-});
 
 app.use(function(err, req, res, next){
     console.error(err.stack);
@@ -61,6 +52,8 @@ function pushTo(ws) {
         console.log(tweet);
 
         var tw = _.pick(tweet, 'id', 'text', 'geo', 'place', 'user', 'entities', 'lang');
-        ws.send(JSON.stringify(tw));
+        ws.send(JSON.stringify(tw), function(err) {
+            if (err) console.log(err);
+        });
     }
 };
