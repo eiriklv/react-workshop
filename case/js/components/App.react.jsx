@@ -4,6 +4,7 @@ var CurrentTweet = require('./CurrentTweet.react');
 var InfluentialTweets = require('./InfluentialTweets.react');
 var AppHeader = require('./AppHeader.react');
 var _ = require('lodash');
+var page = require('page');
 
 var ws = new WebSocket('ws://localhost:9999');
 
@@ -11,6 +12,7 @@ module.exports = React.createClass({
 
     getInitialState: function() {
         return {
+            route: 'root',
             tweets: [],
             tweetCount: 0,
             currentTweet: null
@@ -18,6 +20,16 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function () {
+        page('/', function() {
+            console.log('ROOT');
+            this.setState({ route: 'root' });
+        }.bind(this));
+
+        page('/starred', function() {
+            console.log('STARRED');
+            this.setState({ route: 'starred' });
+        }.bind(this));
+
         ws.onmessage = function(ms) {
             var newTweet = JSON.parse(ms.data);
             var tweets = this.state.tweets.concat([newTweet]).slice(-100);
@@ -25,6 +37,16 @@ module.exports = React.createClass({
         }.bind(this);
 
         if (!this.state.currentTweet) this.state.currentTweet = this.state.tweets[0];
+
+        page();
+
+        setTimeout(function() {
+            page('/starred');
+        }, 3000);
+    },
+
+    componentWillUnmount: function() {
+        page.stop();
     },
 
     showTweet: function(id) {
