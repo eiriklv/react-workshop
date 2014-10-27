@@ -5,19 +5,20 @@ var _ = require('lodash');
 module.exports = React.createClass({
 
     render: function() {
-        var tweets = this.props.tweets;
-        var s = _.sortBy(tweets, function(t) {
-            return -t.user.followers_count;
-        });
-
-        var ts = s.slice(0, 3).map(function(tt) {
-            return <li>
-                <Tweet tweet={ tt } />
-            </li>
-        });
+        var tweets = _.chain(this.props.tweets)
+            .sortBy(function(t) {
+                return -t.user.followers_count;
+            })
+            .slice(0, 3)
+            .map(function(tt) {
+                return <li>
+                    <Tweet tweet={ tt } />
+                </li>
+            })
+            .value();
 
         return <ul className="influential">
-            { ts }
+            { tweets }
         </ul>
     }
 
