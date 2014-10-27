@@ -4,9 +4,10 @@ var Tweet = require('./Tweet.react');
 module.exports = React.createClass({
 
     render: function() {
-        return <Tweet
-            className="current-tweet"
-            tweet={ this.props.tweet } />
+        return <div className="current-tweet">
+            <Tweet
+                tweet={ this.props.tweet } />
+        </div>
     }
 
 });
