@@ -201,6 +201,7 @@ var isoCountries = {
     'SI' : 'Slovenia',
     'SB' : 'Solomon Islands',
     'SO' : 'Somalia',
+    'SX' : 'Sint Maarten',
     'ZA' : 'South Africa',
     'GS' : 'South Georgia And Sandwich Isl.',
     'ES' : 'Spain',
