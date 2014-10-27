@@ -42,7 +42,7 @@ var wss = new WebSocketServer({ server: server });
 var stream = T.stream('statuses/filter', {
     locations: '-180,-90,180,90',
     // language: 'nb,nn,no'
-    language: 'en'
+    // language: 'en'
 });
 
 wss.on('connection', function(ws) {
@@ -56,7 +56,7 @@ wss.on('connection', function(ws) {
 
 function pushTo(ws) {
     return function (tweet) {
-        if (Math.random()>0.5) return;
+        if (Math.random()>0.2) return;
         if (tweet.coordinates == null) return;
 
         console.log(tweet.text, tweet.coordinates)
