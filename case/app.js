@@ -4,11 +4,17 @@ var express = require('express');
 var Twit = require('twit');
 var WebSocketServer = require('ws').Server
 var twitterConfig = require('./twitter.json');
+var util = require('util');
 
 var T = new Twit(twitterConfig);
 
 var app = express();
 app.use(express.static('dist'));
+app.use(express.static('public'));
+
+app.get('/hello', function(req, res) {
+    return res.send('world');
+});
 
 app.use(function(req, res, next) {
     if (req.accepts('html', 'json') == 'html' && req.method == "GET") {
@@ -18,19 +24,13 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(express.static('public'));
-
-app.get('/hello', function(req, res) {
-    return res.send('world');
-});
-
 app.use(function(err, req, res, next){
     console.error(err.stack);
     next(err);
 });
 
 app.use(function(err, req, res, next) {
-    require('util').inspect(err);
+    util.inspect(err);
     res.status(500).send({ error: err.message });
 });
 
@@ -46,24 +46,25 @@ var stream = T.stream('statuses/filter', {
 });
 
 wss.on('connection', function(ws) {
+    var pushTweet = pushTo(ws);
     stream.on('tweet', pushTweet)
 
-    
-    function pushTweet(tweet) {
+    ws.on('close', function() {
+        stream.removeListener('tweet', pushTweet);
+    });
+});
+
+function pushTo(ws) {
+    return function (tweet) {
         if (Math.random()>0.5) return;
         if (tweet.coordinates == null) return;
-        if (tweet.favorited == false) return;
-        console.log(tweet)
+
+        console.log(tweet.text, tweet.coordinates)
+
         var tw = {
             text: tweet.text,
             geo: tweet.coordinates
         };
         ws.send(JSON.stringify(tw));
-    };
-
-    ws.on('close', function() {
-        stream.removeListener('tweet', pushTweet);
-        // stream.stop();
-    });
-});
-
+    }
+};
