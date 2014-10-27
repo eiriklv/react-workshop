@@ -23,6 +23,7 @@ body {
     border: 1px solid #ccc;
 	border-radius: 5px;
 	border-bottom-color: gray;
+	position: relative;
 }
 
 .tweet-text {
