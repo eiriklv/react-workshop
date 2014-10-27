@@ -39,11 +39,6 @@ var TweetMap = React.createClass({
                       initialCenter={new GoogleMapsAPI.LatLng(30.675226, -35.051272)} >
 
                       { markers }
-
-                      <OverlayView
-                          style={{backgroundColor: 'gray'}}
-                          position={new GoogleMapsAPI.LatLng(59.9191310, 10.7585240)} >
-                      </OverlayView>
                   </Map>
                 </div>
     }
