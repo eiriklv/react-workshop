@@ -12,6 +12,23 @@ body {
 	right: 0;
 }
 
+.tweet {
+    width: 300px;
+}
+
+.tweet .user-img {
+    float: left;
+}
+.tweet .user-meta {
+    float: left;
+    height: 48px;
+    padding-left: 5px;
+}
+.tweet .user-meta h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
 .current-tweet {
     position: absolute;
     top: 5px;
@@ -19,4 +36,14 @@ body {
     background-color: #fff;
     color: #000;
     padding: 10px;
+}
+
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
 }

@@ -11,10 +11,14 @@ module.exports = React.createClass({
         var tweet = this.props.tweet;
 
         return <div className="tweet">
-            <img src={tweet.user.profile_image_url} />
+            <div className="user cf">
+                <img className="user-img" src={tweet.user.profile_image_url} />
+                <div className="user-meta">
+                    <h2>@{ tweet.user.screen_name }</h2>
+                    <div className="user-followers">Followers: { tweet.user.followers_count }</div>
+                </div>
+            </div>
             <p>{ tweet.text }</p>
-            <p>By: @{ tweet.user.screen_name }</p>
-            <p>Followers: { tweet.user.followers_count }</p>
         </div>
     }
 
