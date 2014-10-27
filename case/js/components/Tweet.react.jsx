@@ -1,5 +1,8 @@
+/*** @jsx React.DOM */
 var React = require('react');
+
 var countries = require('../util/countries');
+var Flag = require('./Flag.react');
 
 module.exports = React.createClass({
 
@@ -26,7 +29,7 @@ module.exports = React.createClass({
                     <span className="tweet-stats-desc">followers</span>
                 </span>
             </div>
-            <span className={"tweet-flag flag-icon flag-icon-" + tweet.place.country_code.toLowerCase() + " flag-icon-squared"}></span>
+            <Flag countryCode={tweet.place.country_code} />
             <span className="tweet-country tweet-stats-desc">{ countries.getFromISO(tweet.place.country_code) }</span>
             <div className="tweet-city tweet-stats-desc">{ tweet.place.full_name }</div>
         </div>
