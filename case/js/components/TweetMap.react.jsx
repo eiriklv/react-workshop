@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
+var _ = require('underscore');
 
 var ReactGoogleMaps = require('react-googlemaps');
 var GoogleMapsAPI = window.google.maps;
@@ -13,9 +14,15 @@ var TweetMap = React.createClass({
 
     render: function() {
 
+    	var props = this.props;
+
         var markers = this.props.tweets.map(function(t) {
+        	var callback = function() {
+        		props.showTweet(t.id);
+        	}
+
             return <Marker
-                      onClick={this.handleClick}
+                      onClick={ callback }
                       position={new GoogleMapsAPI.LatLng(t.geo.coordinates[1], t.geo.coordinates[0])} />
         });
 

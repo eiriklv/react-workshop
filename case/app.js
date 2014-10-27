@@ -58,12 +58,13 @@ function pushTo(ws) {
     return function (tweet) {
         if (Math.random()>0.2) return;
         if (tweet.coordinates == null) return;
-
-        console.log(tweet.text, tweet.coordinates)
+        if (tweet.place == null) return;
+        console.log(tweet.place.name, ',', tweet.place.country);
 
         var tw = {
             text: tweet.text,
-            geo: tweet.coordinates
+            geo: tweet.coordinates,
+            id: tweet.id
         };
         ws.send(JSON.stringify(tw));
     }

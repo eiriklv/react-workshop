@@ -1,5 +1,6 @@
 var React = require('react');
 var TweetMap = require('./TweetMap.react');
+var _ = require('underscore');
 
 var ws = new WebSocket('ws://localhost:9999');
 
@@ -20,10 +21,21 @@ module.exports = React.createClass({
             tweets: []
         }
     },
+
+    showTweet: function(id) {
+        var tweet = _(this.state.tweets).chain().where({ id: id }).first().value();
+
+        if (!tweet) console.log('Tweet no longer in last hundred');
+
+        console.log(tweet);
+    },
+
     render: function() {
 
         return <div>
-                <TweetMap tweets={ this.state.tweets } />
+                <TweetMap 
+                    tweets={ this.state.tweets } 
+                    showTweet={ this.showTweet} />
 
         </div>;
     }
