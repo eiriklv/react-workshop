@@ -2,7 +2,7 @@ var React = require('react');
 var TweetMap = require('./TweetMap.react');
 var CurrentTweet = require('./CurrentTweet.react');
 var InfluentialTweets = require('./InfluentialTweets.react');
-var TitleBar = require('./TitleBar.react');
+var AppHeader = require('./AppHeader.react');
 var _ = require('lodash');
 
 var ws = new WebSocket('ws://localhost:9999');
@@ -44,7 +44,7 @@ module.exports = React.createClass({
                 tweets={ this.state.tweets }
                 showTweet={ this.showTweet} />
             <InfluentialTweets tweets={ this.state.tweets } />
-            <TitleBar tweetCount={this.state.tweetCount}/>
+            <AppHeader tweetCount={this.state.tweetCount}/>
             { tweet }
         </div>;
     }

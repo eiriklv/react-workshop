@@ -3,8 +3,8 @@ var React = require('react');
 
 var Timer = require('./Timer.react');
 
-var TitleBar = React.createClass({
-    displayName: 'TitleBar',
+var AppHeader = React.createClass({
+    displayName: 'AppHeader',
 
     render: function () {
         return <div className="app-header">
@@ -21,4 +21,4 @@ var TitleBar = React.createClass({
     }
 });
 
-module.exports = TitleBar;
+module.exports = AppHeader;
