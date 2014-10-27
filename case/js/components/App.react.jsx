@@ -1,10 +1,18 @@
 var React = require('react');
 var TweetMap = require('./TweetMap.react');
+var Tweet = require('./Tweet.react');
 var _ = require('underscore');
 
 var ws = new WebSocket('ws://localhost:9999');
 
 module.exports = React.createClass({
+
+    getInitialState: function() {
+        return {
+            tweets: [],
+            currentTweet: null
+        }
+    },
 
     componentDidMount: function () {
         ws.onmessage = function(ms) {
@@ -14,26 +22,23 @@ module.exports = React.createClass({
         }.bind(this);
     },
 
-    getInitialState: function() {
-        return {
-            tweets: []
-        }
-    },
-
     showTweet: function(id) {
         var tweet = _.findWhere(this.state.tweets, { id: id });
-
         if (!tweet) console.log('Tweet no longer in last hundred');
-
-        console.log(tweet);
+        this.setState({ currentTweet: tweet });
     },
 
     render: function() {
+        var tweet = null;
+        if (this.state.currentTweet != null) {
+            tweet = <Tweet tweet={ this.state.currentTweet } />
+        }
 
         return <div>
             <TweetMap
                 tweets={ this.state.tweets }
                 showTweet={ this.showTweet} />
+            { tweet }
         </div>;
     }
 
