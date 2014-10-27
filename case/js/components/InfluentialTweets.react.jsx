@@ -10,9 +10,9 @@ module.exports = React.createClass({
                 return -t.user.followers_count;
             })
             .slice(0, 3)
-            .map(function(tt) {
+            .map(function(tweet) {
                 return <li>
-                    <Tweet tweet={ tt } />
+                    <Tweet tweet={ tweet } />
                 </li>
             })
             .value();
