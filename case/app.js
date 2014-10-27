@@ -48,8 +48,12 @@ var stream = T.stream('statuses/filter', {
 wss.on('connection', function(ws) {
     stream.on('tweet', pushTweet)
 
+    
     function pushTweet(tweet) {
-        console.log(tweet.text, tweet.coordinates)
+        if (Math.random()>0.5) return;
+        if (tweet.coordinates == null) return;
+        if (tweet.favorited == false) return;
+        console.log(tweet)
         var tw = {
             text: tweet.text,
             geo: tweet.coordinates

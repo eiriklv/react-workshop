@@ -6,11 +6,26 @@ var Map = ReactGoogleMaps.Map;
 var Marker = ReactGoogleMaps.Marker;
 var OverlayView = ReactGoogleMaps.OverlayView;
 
+
+var ws = new WebSocket('ws://localhost:9999');
+
+
+
 module.exports = React.createClass({
+
+    componentDidMount: function () {
+        ws.onmessage = function(ms) {
+            ms = JSON.parse(ms.data);
+            var lastTen = this.state.tweets.concat([ms]).slice(-100);
+            this.setState({ tweets: lastTen });
+            console.log(lastTen);
+        }.bind(this);          
+    },
 
     getInitialState: function() {
         return {
-            zoom: 5
+            zoom: 1,
+            tweets: []
         }
     },
 
@@ -26,6 +41,12 @@ module.exports = React.createClass({
 
     render: function() {
 
+        var markers = this.state.tweets.map(function(t) {
+            return <Marker
+                      onClick={this.handleClick}
+                      position={new GoogleMapsAPI.LatLng(t.geo.coordinates[1], t.geo.coordinates[0])} />
+        });
+
         return <div className="container">
         			<Map className="test"
                         width="100%"
@@ -33,25 +54,17 @@ module.exports = React.createClass({
 	        			zoom={ this.state.zoom }
                         scaleControl={false}
                         streetViewControl={false}
-                        mapTypeId={window.google.maps.MapTypeId.ROADMAP}
                         panControl={false}
                         zoomControl={false}
                         mapTypeControl={false}
 	        			onZoomChange={this.zoomChanged}
 					    initialCenter={new GoogleMapsAPI.LatLng(59.9191310, 10.7585240)} >
 
-                    <Marker
-                      onClick={this.handleClick}
-                      position={new GoogleMapsAPI.LatLng(59.9191310, 10.7585240)} />
-
-                    <Marker
-                    onClick={this.handleClick}
-                    position={new GoogleMapsAPI.LatLng(37.774929500000000000, -122.419415500000010000)} />
-
+                
+                    { markers }
                     <OverlayView
                       style={{backgroundColor: 'gray'}}
                       position={new GoogleMapsAPI.LatLng(59.9191310, 10.7585240)} >
-                      <p>My state: {this.state.zoom}</p>
                     </OverlayView>
                     </Map>
         		</div>
