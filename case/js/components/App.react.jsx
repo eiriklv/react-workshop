@@ -25,9 +25,9 @@ module.exports = React.createClass({
 
         page();
 
-        setTimeout(function() {
-            page('/starred');
-        }, 5000);
+//        setTimeout(function() {
+//            page('/starred');
+//        }, 5000);
     },
 
     componentWillUnmount: function() {
