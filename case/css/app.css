@@ -1,6 +1,7 @@
 body {
     background-color: brown;
     color: white;
+    font: normal normal normal 12px/16px "Helvetica Neue",Roboto,"Segoe UI",Calibri,sans-serif;
 }
 
 
@@ -19,4 +20,68 @@ body {
     background-color: #fff;
     color: #000;
     padding: 10px;
+    max-width: 400px;
+    min-width: 250px;
+    border: 1px solid #ccc;
+	border-radius: 5px;
+	border-bottom-color: gray;
+}
+
+.tweet-text {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.tweet-image {
+	float: left;
+	width: 28px;
+	padding-right: 10px;
+}
+
+.tweet-header {
+	margin-bottom: 7px;
+}
+
+.tweet-name {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.tweet-screen-name {
+	font-size: 12px;
+	color: #707070;
+}
+
+.tweet-follow-button {
+	display: inline-block;
+	padding: 0 5px 0 3px;
+	font: bold 11px/18px 'Helvetica Neue',Arial,sans-serif;
+	color: #333;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	white-space: nowrap;
+	cursor: pointer;
+	background-color: #eee;
+	background-image: -webkit-linear-gradient(#fff,#dedede);
+	background-image: linear-gradient(#fff,#dedede);
+	border: #ccc solid 1px;
+	border-radius: 3px;
+	width: 45px;
+	float: right;
+	text-align: center;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.tweet-stats {
+	color: #66757f;
+	margin-top: 20px;
+}
+
+.tweet-stats-desc {
+	margin: 0px 3px;
+	text-transform: uppercase;
+	color: #707070;
+	font-size: 10px;
 }

@@ -20,6 +20,8 @@ module.exports = React.createClass({
             var last = this.state.tweets.concat([ms]).slice(-100);
             this.setState({ tweets: last });
         }.bind(this);
+
+        if (!this.state.currentTweet) this.state.currentTweet = this.state.tweets[0];
     },
 
     showTweet: function(id) {
