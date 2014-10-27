@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var ReactGoogleMaps = require('react-googlemaps');
 var GoogleMapsAPI = window.google.maps;

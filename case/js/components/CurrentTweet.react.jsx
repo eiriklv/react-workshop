@@ -5,8 +5,7 @@ module.exports = React.createClass({
 
     render: function() {
         return <div className="current-tweet">
-            <Tweet
-                tweet={ this.props.tweet } />
+            <Tweet tweet={ this.props.tweet } />
         </div>
     }
 

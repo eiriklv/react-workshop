@@ -1,7 +1,7 @@
 var React = require('react');
 var TweetMap = require('./TweetMap.react');
 var CurrentTweet = require('./CurrentTweet.react');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var ws = new WebSocket('ws://localhost:9999');
 
