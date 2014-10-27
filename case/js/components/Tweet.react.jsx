@@ -9,7 +9,9 @@ module.exports = React.createClass({
 
     render: function() {
         var tweet = this.props.tweet;
-        return <div className={"current-tweet"}>
+        var cx = 'tweet ' + (this.props.className || '');
+
+        return <div className={ cx }>
             <img src={tweet.user.profile_image_url} />
             <p>{ tweet.text }</p>
             <p>By: @{ tweet.user.screen_name }</p>

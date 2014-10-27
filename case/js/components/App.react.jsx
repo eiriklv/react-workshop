@@ -1,6 +1,6 @@
 var React = require('react');
 var TweetMap = require('./TweetMap.react');
-var Tweet = require('./Tweet.react');
+var CurrentTweet = require('./CurrentTweet.react');
 var _ = require('underscore');
 
 var ws = new WebSocket('ws://localhost:9999');
@@ -31,7 +31,7 @@ module.exports = React.createClass({
     render: function() {
         var tweet = null;
         if (this.state.currentTweet != null) {
-            tweet = <Tweet tweet={ this.state.currentTweet } />
+            tweet = <CurrentTweet tweet={ this.state.currentTweet } />
         }
 
         return <div>
