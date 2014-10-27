@@ -16,9 +16,9 @@ module.exports = React.createClass({
 
     componentDidMount: function () {
         ws.onmessage = function(ms) {
-            ms = JSON.parse(ms.data);
-            var last = this.state.tweets.concat([ms]).slice(-100);
-            this.setState({ tweets: last });
+            var newTweet = JSON.parse(ms.data);
+            var tweets = this.state.tweets.concat([newTweet]).slice(-100);
+            this.setState({ tweets: tweets });
         }.bind(this);
     },
 
