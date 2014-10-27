@@ -1,21 +1,14 @@
 var React = require('react');
-var TweetMap = require('./TweetMap.react');
-var CurrentTweet = require('./CurrentTweet.react');
-var InfluentialTweets = require('./InfluentialTweets.react');
-var AppHeader = require('./AppHeader.react');
 var _ = require('lodash');
 var page = require('page');
-
-var ws = new WebSocket('ws://localhost:9999');
+var Dashboard = require('./Dashboard.react');
+var StarredTweets = require('./StarredTweets.react');
 
 module.exports = React.createClass({
 
     getInitialState: function() {
         return {
-            route: 'root',
-            tweets: [],
-            tweetCount: 0,
-            currentTweet: null
+            route: 'root'
         }
     },
 
@@ -30,45 +23,25 @@ module.exports = React.createClass({
             this.setState({ route: 'starred' });
         }.bind(this));
 
-        ws.onmessage = function(ms) {
-            var newTweet = JSON.parse(ms.data);
-            var tweets = this.state.tweets.concat([newTweet]).slice(-100);
-            this.setState({ tweets: tweets, tweetCount: this.state.tweetCount + 1 });
-        }.bind(this);
-
-        if (!this.state.currentTweet) this.state.currentTweet = this.state.tweets[0];
-
         page();
 
         setTimeout(function() {
             page('/starred');
-        }, 3000);
+        }, 5000);
     },
 
     componentWillUnmount: function() {
         page.stop();
     },
 
-    showTweet: function(id) {
-        var tweet = _.findWhere(this.state.tweets, { id: id });
-        if (!tweet) console.log('Tweet no longer in selection');
-        this.setState({ currentTweet: tweet });
-    },
-
     render: function() {
-        var tweet = null;
-        if (this.state.currentTweet != null) {
-            tweet = <CurrentTweet tweet={ this.state.currentTweet } />
-        }
+        switch(this.state.route) {
+            case 'starred':
+                return <StarredTweets />
 
-        return <div>
-            <TweetMap
-                tweets={ this.state.tweets }
-                showTweet={ this.showTweet} />
-            <InfluentialTweets tweets={ this.state.tweets } />
-            <AppHeader tweetCount={this.state.tweetCount}/>
-            { tweet }
-        </div>;
+            default:
+                return <Dashboard />
+        }
     }
 
 });
