@@ -52,6 +52,8 @@ function pushTo(ws) {
         console.log(tweet);
 
         var tw = _.pick(tweet, 'id', 'text', 'geo', 'place', 'user', 'entities', 'lang');
-        ws.send(JSON.stringify(tw));
+        ws.send(JSON.stringify(tw), function(err) {
+            if (err) console.log(err);
+        });
     }
 };
