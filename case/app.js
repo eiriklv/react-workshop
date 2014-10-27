@@ -42,7 +42,7 @@ var wss = new WebSocketServer({ server: server });
 var stream = T.stream('statuses/filter', {
     locations: '-180,-90,180,90',
     // language: 'nb,nn,no'
-    // language: 'en'
+    language: 'en'
 });
 
 wss.on('connection', function(ws) {
