@@ -27,7 +27,7 @@ module.exports = React.createClass({
 
     showTweet: function(id) {
         var tweet = _.findWhere(this.state.tweets, { id: id });
-        if (!tweet) console.log('Tweet no longer in last hundred');
+        if (!tweet) console.log('Tweet no longer in selection');
         this.setState({ currentTweet: tweet });
     },
 
