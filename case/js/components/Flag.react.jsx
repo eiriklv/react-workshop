@@ -5,8 +5,7 @@ var Flag = React.createClass({
     displayName: 'Flag',
 
     render: function () {
-
-    	var countryCode = this.props.countryCode.toLowerCase();
+        var countryCode = this.props.countryCode.toLowerCase();
         return <span className={"tweet-flag flag-icon flag-icon-" + countryCode + " flag-icon-squared"}></span>;
     }
 });

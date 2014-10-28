@@ -1,10 +1,10 @@
+var _ = require('lodash');
 var React = require('react');
 var TweetMap = require('./TweetMap.react');
 var AppHeader = require('./AppHeader.react');
+var CountryList = require('./CountryList.react');
 var CurrentTweet = require('./CurrentTweet.react');
 var InfluentialTweets = require('./InfluentialTweets.react');
-var CountryList = require('./CountryList.react');
-var _ = require('lodash');
 
 var ws = new WebSocket('ws://localhost:9999');
 
@@ -60,7 +60,6 @@ module.exports = React.createClass({
             <AppHeader tweetCount={this.state.tweetCount}/>
             <CountryList countries={this.state.countries} />
             { tweet }
-
         </div>;
     }
 
