@@ -30,8 +30,8 @@ var TweetMap = React.createClass({
                 position={new GoogleMapsAPI.LatLng(t.geo.coordinates[0], t.geo.coordinates[1])} />
         });
 
-        return <div className="container">
-                  <Map className="test"
+        return <div className="tweet-map">
+                  <Map 
                       width="100%"
                       height="100%"
                       initialZoom={3}

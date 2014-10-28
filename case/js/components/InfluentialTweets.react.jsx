@@ -17,7 +17,7 @@ module.exports = React.createClass({
             })
             .value();
 
-        return <ul className="influential">
+        return <ul className="tweetlist">
             { tweets }
         </ul>
     }
