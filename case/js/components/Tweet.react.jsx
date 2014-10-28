@@ -20,7 +20,7 @@ module.exports = React.createClass({
                 <img className="tweet-image" src={tweet.user.profile_image_url} />
                 <div className="tweet-image-offset tweet-name">{ tweet.user.name }</div>
                 <div className="tweet-image-offset tweet-screen-name">@{ tweet.user.screen_name }</div>
-                <a className="tweet-follow-button" onClick={this.save}><i/>Save</a>
+                <a className="tweet-save-button" onClick={this.save}><i/>Save</a>
             </div>
 
             <div className="tweet-text">{ tweet.text }</div>
