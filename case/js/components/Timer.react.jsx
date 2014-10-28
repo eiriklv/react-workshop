@@ -16,12 +16,11 @@ var Timer = React.createClass({
     },
 
     tick: function(){
-        this.setState({elapsed: this.state.elapsed + 1 });
+        this.setState({ elapsed: this.state.elapsed + 1 });
     },
 
     render: function() {
-        var elapsed = this.state.elapsed;
-        return <span>{this.state.elapsed}</span>;
+        return <span>{ this.state.elapsed }</span>;
     }
 });
 
