@@ -12,10 +12,6 @@ module.exports = React.createClass({
         return this.props.tweet !== nextProps.tweet;
     },
 
-    save: function() {
-        starred.add(this.props.tweet);
-    },
-
     render: function() {
         var tweet = this.props.tweet;
 
@@ -38,6 +34,10 @@ module.exports = React.createClass({
             <span className="tweet-country tweet-stats-desc">{ countries.getFromISO(tweet.place.country_code) }</span>
             <div className="tweet-city tweet-stats-desc">{ tweet.place.full_name }</div>
         </div>
+    },
+
+    save: function() {
+        starred.add(this.props.tweet);
     }
 
 });

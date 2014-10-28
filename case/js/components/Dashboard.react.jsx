@@ -53,7 +53,7 @@ module.exports = React.createClass({
         }
 
         return <div>
-          <TweetMap
+            <TweetMap
                 tweets={ this.state.tweets }
                 showTweet={ this.showTweet} />
             <InfluentialTweets tweets={ this.state.tweets } />
