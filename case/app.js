@@ -44,12 +44,21 @@ wss.on('connection', function(ws) {
     });
 });
 
+var SPEED = {
+    SLOW: 0.01,
+    MEDIUM: 0.1,
+    FAST: 0.2,
+    INSANE_HAHAHA: 0.5,
+    ARE_YOU_KIDDING_ME: 0.8,
+    MY_BROWSER_HATES_ME: 1.0
+};
+
 function pushTo(ws) {
     return function (tweet) {
-        if (Math.random()>0.1) return;
+        if (Math.random() > SPEED.SLOW) return;
         if (tweet.coordinates == null) return;
         if (tweet.place == null) return;
-        console.log(tweet);
+        
 
         var tw = _.pick(tweet, 'id', 'text', 'geo', 'place', 'user', 'entities', 'lang');
         ws.send(JSON.stringify(tw), function(err) {
