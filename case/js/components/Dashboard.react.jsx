@@ -55,6 +55,7 @@ module.exports = React.createClass({
         return <div>
             <TweetMap
                 tweets={ this.state.tweets }
+                currentTweet={ this.state.currentTweet }
                 showTweet={ this.showTweet} />
             <InfluentialTweets tweets={ this.state.tweets } />
             <AppHeader tweetCount={this.state.tweetCount}/>

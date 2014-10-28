@@ -46,7 +46,7 @@ wss.on('connection', function(ws) {
 
 function pushTo(ws) {
     return function (tweet) {
-        if (Math.random()>0.2) return;
+        if (Math.random()>0.1) return;
         if (tweet.coordinates == null) return;
         if (tweet.place == null) return;
         console.log(tweet);
