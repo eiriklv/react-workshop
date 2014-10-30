@@ -8,6 +8,21 @@ var util = require('util');
 var historyApiFallback = require('connect-history-api-fallback');
 historyApiFallback.setLogger(console.log.bind(console));
 
+var LOCATIONS = {
+    EUROPE: '-13.380968, 37.810047, 31.443250, 70.709137',
+    WORLD: '-180,-90,180,90'
+};
+
+var SPEED = {
+    SLOW: 0.01,
+    MEDIUM: 0.1,
+    FAST: 0.2,
+    INSANE: 0.4,
+    RUDUNCULOUS: 0.6,
+    MY_BROWSER_HATES_ME: 1.0
+};
+
+
 var T = new Twit(twitterConfig);
 
 var app = express();
@@ -31,8 +46,8 @@ server.listen(9999);
 var wss = new WebSocketServer({ server: server });
 
 var stream = T.stream('statuses/filter', {
-    locations: '-180,-90,180,90'
-    // ,language: 'en,nb,nn,no'
+    locations: LOCATIONS.WORLD
+    ,language: 'en,nb,nn,no'
 });
 
 wss.on('connection', function(ws) {
@@ -44,18 +59,10 @@ wss.on('connection', function(ws) {
     });
 });
 
-var SPEED = {
-    SLOW: 0.01,
-    MEDIUM: 0.1,
-    FAST: 0.2,
-    INSANE_HAHAHA: 0.5,
-    ARE_YOU_KIDDING_ME: 0.8,
-    MY_BROWSER_HATES_ME: 1.0
-};
 
 function pushTo(ws) {
     return function (tweet) {
-        if (Math.random() > SPEED.SLOW) return;
+        if (Math.random() > SPEED.MEDIUM) return;
         if (tweet.coordinates == null) return;
         if (tweet.place == null) return;
         
