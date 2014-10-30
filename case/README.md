@@ -184,7 +184,7 @@ Her kan du gjenbruke komponenten fra `Timer`-oppgaven!
 ### Oppgave 8: Landstatistikk
 
 Vi har lyst til å rangere landene etter flest publiserte tweets. Lag en
-komponent `CountryList` som gjør dette. Denne statistikken skal inneholde alle
+komponent `CountryList` som gjør dette. Denne statistikken skal baseres på alle
 tweets, ikke kun de siste hundre.
 
 ```html
@@ -198,8 +198,8 @@ tweets, ikke kun de siste hundre.
 
 ### Oppgave 9: Refaktorering
 
-Vi har nå flaggvisning to forskjellige steder. Skill dette ut i en egen
-komponent `Flag`.
+Vi har nå implementert flaggvisning to forskjellige steder. Skill dette ut i en
+egen komponent `Flag`.
 
 ### Oppgave 10: DIY
 
