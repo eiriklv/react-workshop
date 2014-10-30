@@ -1,9 +1,6 @@
 {
   "name": "Twitterized",
   "private": true,
-  "scripts": {
-    "test": ""
-  },
   "dependencies": {
     "connect-history-api-fallback": "0.0.5",
     "express": "^4.9.6",
