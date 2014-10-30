@@ -42,13 +42,18 @@ Gå til http://localhost:9999/
 
 ### Oppgave 1: En Tweet-komponent
 
-Lag en komponent som tar inn en tweet og rendrer denne. Du kan
-se formatet i `./example_tweet.json`. Eksempel-HTML finner du
-nederst i oppgaven.
+Lag en komponent som tar inn et tweet-objekt og rendrer dette. Bruk
+Tweet-komponenten i Dashboard-komponenten.  Du kan se et eksempel i
+`example_tweet.json`. Eksempel-HTML finner du nederst i oppgaven.
 
-Når du har laget Tweet-komponenten, kan du sette opp en
-WebSocket-tilkobling mot serveren og starte å motta tweets.
-Rendre siste mottatte tweet med Tweet-komponenten.
+Når du har laget Tweet-komponenten kan du sette opp en WebSocket-tilkobling
+mot serveren og starte å motta tweets. Dette kan også gjøres i
+Dashboard-komponenten. Rendre siste mottatte tweet med Tweet-komponenten.
+
+Her ser du hvilke lifecycle-metoder som finnes i React:
+http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods
+
+WebSocket-oppsett:
 
 ```
 var ws = new WebSocket('ws://localhost:9999');
@@ -87,7 +92,7 @@ to siste bokstavene er landskoden (f.eks. `no` for Norge).
 
 ### Oppgave 2: TweetList
 
-Utvid til å rendre en liste med alle mottatte Tweets. `<ul>`
+Utvid til å rendre en liste med alle mottatte tweets. `<ul>`-en
 bør ha klassen `.tweetlist`.
 
 På sikt (ganske raskt, faktisk) vil vi få mange tweets, så
@@ -101,7 +106,7 @@ Nå skal vi legge til et kart! Du finner endel komponenter på
 f.eks. http://react-components.com. Der ligger også
 react-googlemaps (hint, hint).
 
-Legg til et kart. Vi anbefaler å wrappe kartet i en div med
+Lag en kart-komponent. Vi anbefaler å wrappe kartet i en div med
 klassen `tweet-map`.
 
 Følgende innstillinger danner et godt utgangspunkt:
@@ -116,7 +121,7 @@ mapTypeControl: false
 initialCenter: 30.675226, -35.051272
 ```
 
-Hver tweet inneholder sin geoposisjon. Bruk dette til å
+Hver tweet inneholder sin geo-posisjon. Bruk dette til å
 plassere markører på kartet.
 
 Nå kan vi skru opp dampen på antall tweets per sekund. Endre hastigheten i
@@ -179,7 +184,7 @@ Her kan du gjenbruke komponenten fra `Timer`-oppgaven!
 ### Oppgave 8: Landstatistikk
 
 Vi har lyst til å rangere landene etter flest publiserte tweets. Lag en
-komponent `CountryList` som gjør dette. Denne statistikken skal inneholde alle
+komponent `CountryList` som gjør dette. Denne statistikken skal baseres på alle
 tweets, ikke kun de siste hundre.
 
 ```html
@@ -193,8 +198,8 @@ tweets, ikke kun de siste hundre.
 
 ### Oppgave 9: Refaktorering
 
-Vi har nå flaggvisning to forskjellige steder. Skill dette ut i en egen
-komponent `Flag`.
+Vi har nå implementert flaggvisning to forskjellige steder. Skill dette ut i en
+egen komponent `Flag`.
 
 ### Oppgave 10: DIY
 
