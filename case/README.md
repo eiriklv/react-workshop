@@ -1,4 +1,4 @@
-# Case: Twitterized
+# Case: Twitter Dashboard
 
 Vi skal lage tidenes Twitter-dashboard!
 
