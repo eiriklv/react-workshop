@@ -2,11 +2,7 @@
 
 Vi skal lage tidenes Twitter-dashboard!
 
-
-
-
 ## Oppsett
-
 
 Gå til https://apps.twitter.com
 
@@ -46,20 +42,23 @@ Gå til http://localhost:9999/
 
 ### Oppgave 1: En Tweet-komponent
 
-Lage en komponent som tar inn en tweet og visualiserer denne. En eksempeltweet finner du i `example_tweet.json` på rot.
+Lag en komponent som tar inn en tweet og rendrer denne. Du kan
+se formatet i `./example_tweet.json`. Eksempel-HTML finner du
+nederst i oppgaven.
 
-* Sett opp WS
-* Motta tweet
-* Vis siste tweet vha Tweet-komponent
+Når du har laget Tweet-komponenten, kan du sette opp en
+WebSocket-tilkobling mot serveren og starte å motta tweets.
+Rendre siste mottatte tweet med Tweet-komponenten.
 
 ```
 var ws = new WebSocket('ws://localhost:9999');
 ws.onmessage = function(ms) {
-	var newTweet = JSON.parse(ms.data);
+    var newTweet = JSON.parse(ms.data);
 }
 ```
 
-Komponenten bør ha følgende htmlstruktur:
+Komponenten bør ha følgende HTML-struktur (da får du med litt
+gratis CSS på kjøpet):
 
 ```html
 <div class="tweet">
@@ -83,21 +82,27 @@ Komponenten bør ha følgende htmlstruktur:
 </div>
 ```
 
-Legg merke til flagget som har klassen `flag-icon-no`, der de to siste bokstavene er landskoden (feks no for Norge).
+Legg merke til flagget som har klassen `flag-icon-no`, der de
+to siste bokstavene er landskoden (f.eks. `no` for Norge).
 
 ### Oppgave 2: TweetList
 
-Utvid til en liste som viser alle mottatte Tweets.
+Utvid til å rendre en liste med alle mottatte Tweets. `<ul>`
+bør ha klassen `.tweetlist`.
 
-På sikt vil vi få mange tweets. 
+På sikt (ganske raskt, faktisk) vil vi få mange tweets, så
+endre til å kun vise de tre siste.
 
-Endre derfor til kun å vise de tre siste.
-
-UL må ha klasse `.tweetlist`. Flytt så dette ut i egen komponent `TweetList`.
+Flytt dette ut i egen komponent `TweetList`.
 
 ### Oppgave 3: TweetMap
 
-Legg til et kart. Trenger klassen `tweet-map`. Du finner endel komponenter på f.eks react-components.com. Der ligger også react-googlemaps (hint, hint). Se API: https://github.com/pieterv/react-googlemaps.
+Nå skal vi legge til et kart! Du finner endel komponenter på
+f.eks. http://react-components.com. Der ligger også
+react-googlemaps (hint, hint).
+
+Legg til et kart. Vi anbefaler å wrappe kartet i en div med
+klassen `tweet-map`.
 
 Følgende innstillinger danner et godt utgangspunkt:
 
@@ -111,21 +116,28 @@ mapTypeControl: false
 initialCenter: 30.675226, -35.051272
 ```
 
-Hver tweet inneholder sin geoposisjon. Bruk dette til å plassere markører på kartet. 
+Hver tweet inneholder sin geoposisjon. Bruk dette til å
+plassere markører på kartet.
 
-Nå kan vi skru opp dampen på antall tweets per sekund. Endre hastigheten i `app.js` til `SPEED.MEDIUM`. 
-For å ikke kræsje browseren er det lurt å begrense antall tweets som vises. Begrense antall tweets som blir vist til enhver tid til kun de hundre siste.
-
+Nå kan vi skru opp dampen på antall tweets per sekund. Endre hastigheten i
+`app.js` til `SPEED.MEDIUM`. For å ikke kræsje browseren kan det være lurt å
+begrense antall tweets som vises (ellers gjør laptop-en din til helikopter).
+Hundre siste tweets er et bra utgangspunkt.
 
 ### Oppgave 4: InfluentialTweets
 
-Nå som vi får vesentlig flere tweets, blir det vanskelig å lese tweetene i `TweetList`. Endre denne til å kun vise de tre tweets fra brukere med flest følgere blant de hundre som vises. 
+Nå som vi får vesentlig flere tweets blir det vanskelig å lese tweetene i
+`TweetList`. Endre til å at de tre tweetene som vises kommer fra brukerne med
+flest følgere blant de hundre som vises.
 
 ### Oppgave 5: CurrentTweet
 
-Ved å klikke på en markør skal valgte tweet vises. Bruk css-klassen `.current-tweet`. Det kan være hensiktsmessig å lage en egen komponent som bruker `Tweet`.
+Ved å klikke på en markør skal valgte tweet vises. Det kan være hensiktsmessig
+å lage en egen komponent som bruker `Tweet`-komponenten internt. For litt
+gratis CSS, bruk `.current-tweet`.
 
-Den valgte tweeten skal ha en egen farge på markøren. Markørobjektet har en property `icon` som tar inn en bildeurl. Noen andre markører finnes her:
+Den valgte tweeten skal ha en egen farge på markøren. Markørobjektet har en
+property `icon` som tar inn en bildeurl. Her kan du velge blant for eksempel:
 
 ```
 http://maps.google.com/mapfiles/ms/icons/red-dot.png
@@ -136,44 +148,52 @@ http://maps.google.com/mapfiles/ms/icons/green-dot.png
 
 ### Oppgave 6: shouldComponentUpdate
 
-Med mange innkommende tweets kan det være lurt å hjelpe `React` med å forstå når den trenger å gjøre oppdateringer i DOM-en.
+Med mange innkommende tweets kan det være lurt å hjelpe React med å forstå når
+man i det hele tatt trenger å sjekke om en komponent har endringer som skal
+rendres til DOM-en. (Altså når et nytt render-kall ikke medfører endringer som
+skal rendres.)
 
-Skriv en `console.log` i render-metoden på CurrentTweet-komponenten og se hvor ofte denne kalles.
-
-Bruk `shouldComponentUpdate` til å kun rendre når valgt tweet endrer seg.
+Skriv en `console.log` i `render`-metoden på `CurrentTweet`-komponenten og se
+hvor ofte denne kalles. Vi ønsker at den kun skal rendre én gang for hver gang
+vi velger en ny tweet. Til dette kan vi bruke lifecycle-metoden `shouldComponentUpdate`.
 
 ### Oppgave 7: App Header
 
-Appen vår må ha en fet tittel, og vise hvor mange sekunder den har kjørt og antall tweets den har prosessert. Lag en headerkomponent som brukes css-klassen `.app-header`. Kjøretid og antall tweets bør ha følgende htmlstruktur:
+Appen vår må ha en fet tittel, og vise hvor mange sekunder den har kjørt og
+antall tweets den har prosessert. Lag en headerkomponent. Her finner du litt
+basis-HTML, som blant annet viser eksempel på HTML-struktur på kjøretid og
+antall tweets.
 
 ```html
-<div>
-	<span class="tweet-stats-desc">seconds running</span>
-	<strong>12</strong>
+<div class="app-header">
+    <h1>Crazy-name, yo</h1>
+    <div>
+        <span class="tweet-stats-desc">seconds running</span>
+        <strong>12</strong>
+    </div>
 </div>
 ```
 
 ### Oppgave 8: Landstatistikk
 
-Vi har lyst til å rangere landene etter flest publiserte tweets. Lag en komponent `CountryList` som gjør dette. Denne statistikken skal inneholde alle tweets, ikke kun de siste hundre.
+Vi har lyst til å rangere landene etter flest publiserte tweets. Lag en
+komponent `CountryList` som gjør dette. Denne statistikken skal inneholde alle
+tweets, ikke kun de siste hundre.
 
 ```html
-<ul class="country-list"
-	<li>
-	   <span class="tweet-flag flag-icon flag-icon-no"></span>
-	   <span class="country-tweet-count">25</span>
-	</li>
+<ul class="country-list">
+    <li>
+       <span class="tweet-flag flag-icon flag-icon-no"></span>
+       <span class="country-tweet-count">25</span>
+    </li>
 </ul>
 ```
 
 ### Oppgave 9: Refaktorering
 
-Vi har no flaggvisning to forskjellige steder. Skill dette ut i en egen komponent `Flag`.
+Vi har nå flaggvisning to forskjellige steder. Skill dette ut i en egen
+komponent `Flag`.
 
-
-### Oppgave 10: Routing
-
-
-### Oppgave 11: DIY
+### Oppgave 10: DIY
 
 Gjør noe fett og gled deg til ølfestival!
