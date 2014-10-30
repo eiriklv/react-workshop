@@ -69,7 +69,7 @@ gratis CSS på kjøpet):
         <a class="tweet-save-button">Save</a>
     </div>
 
-    <div class="tweet-text">Halla på`rræ</div>
+    <div class="tweet-text">Halla på'rræ</div>
     <div class="tweet-stats">
         <span class="tweet-user-followers">
             <strong>12,058</strong>
