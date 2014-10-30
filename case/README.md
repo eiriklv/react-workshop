@@ -174,6 +174,8 @@ antall tweets.
 </div>
 ```
 
+Her kan du gjenbruke komponenten fra `Timer`-oppgaven!
+
 ### Oppgave 8: Landstatistikk
 
 Vi har lyst til å rangere landene etter flest publiserte tweets. Lag en
