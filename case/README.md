@@ -201,6 +201,47 @@ tweets, ikke kun de siste hundre.
 Vi har nå implementert flaggvisning to forskjellige steder. Skill dette ut i en
 egen komponent `Flag`.
 
-### Oppgave 10: DIY
+### Oppgave 10: Save tweets
+
+Nå har vi sykt lyst til å lagre kule tweets. Dette gjøres ved å
+trykke på "Save"-knappen på en tweet. Som en start kan du
+`console.log`-e lagrede tweets.  Men etter det er det på tide å
+se på routing og å kunne gå til en egen side som viser alle
+lagrede tweets.
+
+Det finnes mange routing-biblioteker, for eksempel
+[Backbone](http://backbonejs.org/#Router) or
+[page.js](https://github.com/visionmedia/page.js).
+
+Dette er en mulig måte å håndtere routing (med page.js):
+
+```javascript
+componentDidMount: function () {
+    page('/', function() {
+        this.setState({ route: 'root' });
+    }.bind(this));
+
+    page('/starred', function() {
+        this.setState({ route: 'starred' });
+    }.bind(this));
+
+    page();
+},
+
+render: function() {
+    switch(this.state.route) {
+        case 'starred':
+            return <StarredTweets />
+
+        default:
+            return <Dashboard />
+    }
+}
+```
+
+Til slutt kan du også lagre i og hente fra localstorage.
+
+### Oppgave 11: DIY
 
 Gjør noe fett og gled deg til ølfestival!
+
