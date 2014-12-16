@@ -1,6 +1,6 @@
 # react-workshop
 
-Dette repoet inneholder alt materiale brukt i workshop om React.js for JavaScript & webteknologi-gruppa 23. september 2014.
+Dette repoet inneholder alt materiale brukt i workshop om React.js for på BEKK Fagdag 31. oktober 2014.
 
 Slides ligger [her](https://github.com/ewendel/react-workshop/blob/master/slides/slides.pdf?raw=true)
 
@@ -19,6 +19,13 @@ npm install
 Start serveren:
 
 ```
+node app.js
+```
+
+For å starte serveren til Twitter-caset:
+
+```
+cd case
 node app.js
 ```
 
