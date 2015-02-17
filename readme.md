@@ -115,9 +115,7 @@ Attributter i JSX: `onChange`, `refs`, `className` (da class er et reserved keyw
 
 Vi skal lage en interaktiv app som benytter blant annet Twitter og Google Maps.
 
-## Oppgave 1
-
-Lag en komponent som tar inn en Tweet og viser denne. Komponenten skal også huske om tweeten er favorittmarkert. Tweeten skal ha følgende markupstruktur:
+Oppgavebeskrivelsen finner du /case/readme.md.
 
 
 
