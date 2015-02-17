@@ -14,6 +14,6 @@
 	setInterval, clearInterval
 
 	Lifecycle hooks:
-	componentDidMount, componentDidUnmount
+	componentDidMount, componentWillUnmount
 
 */
