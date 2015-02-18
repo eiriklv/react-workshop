@@ -46,9 +46,6 @@ Lag en enkel React-komponent som kun skriver ut `Hello World` til DOM-en.
 
 #### Tips
 
-Husk JSX-headsup i første linje:<br>
-`/** @jsx React.DOM */`
-
 Interessante metoder: 
 `React.createClass, React.renderComponent`
 
