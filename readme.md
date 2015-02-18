@@ -1,28 +1,28 @@
-# react-workshop
+# Frontendworkshop 19.02.15
 
-Dette repoet inneholder alt materiale brukt i workshop om React.js for på BEKK Fagdag 31. oktober 2014.
+Slides from the presentation are available here [her](https://github.com/ewendel/react-workshop/blob/master/slides/slides.pdf?raw=true)
 
-Slides ligger [her](https://github.com/ewendel/react-workshop/blob/master/slides/slides.pdf?raw=true)
+## Instructions
 
-Start med å klone repoet:
+Start by cloning this repo:
 
 ```
 https://github.com/ewendel/react-workshop.git
 ```
 
-For å installere prosjektets avhengigheter, kjør 
+Run the following to install the projects' dependencies:
 
 ```
 npm install
 ```
 
-Start serveren:
+Start the webserver with:
 
 ```
 node app.js
 ```
 
-For å starte serveren til Twitter-caset:
+To start the server for the Twitter-app, do:
 
 ```
 cd case
@@ -30,63 +30,70 @@ node app.js
 ```
 
 
-## Oppgaver
+## Exercises
 
-Oppgavetekstene ligger her i `README.md`, og det er laget ferdig index.html, script.js og styles.css i en mappe per oppgave som ligger under `react-workshop/tasks/`. I disse filene er både React og en JSX-Transformator for utvikling dratt inn, så vi slipper å bygge frontenden vår kontinuerlig. Noen av oppgavene utleveres med en del CSS, slik at det i utgangspunktet skal være unødvendig å skrive noe mer css.
+Exercise descriptions are available here in this file, `README.md`, and files for you to code in are already created. These can be found in `react-workshop/tasks/`. This means that you do not have to create any files yourself in order to complete the first part of the workshop.
 
-Disse filene kan nås via f.eks `http://localhost:3000/{oppgavenr}/index.html`
+In these files, the source code for React.js and a JSX-transpiler are already included so that we do not need to continously build our frontend code while developing. Some of the exercises include pre-written CSS, so you shouldn'nt need to write any CSS (unless you want to spice things up).
 
-Man kan også bruke f.eks [JSFiddle](www.jsfiddle.net) til å gjøre oppgavene om ønskelig.
+These files can be reached at the following URL: `http://localhost:3000/{exercise number}/index.html`, e.g. `http://localhost:3000/1/index.html`
 
-**Underveis i oppgavene kan det være greit å kikke innom [dokumentasjonen](http://facebook.github.io/react/docs/) til React.**
+**It may be helpful to peek at [React's documentation](http://facebook.github.io/react/docs/) while doing the exercises.**
 
-## Oppgave 1: Bli kjent med komponenter
+## Exercise 1: Becoming aquainted with React Components
 
-Lag en enkel React-komponent som kun skriver ut `Hello World` til DOM-en.
-
-#### Tips
-
-Interessante metoder: 
-`React.createClass, React.renderComponent`
-
-## Oppgave 2: Data & JSX
-
-Utvid komponenten til å ta inn en property `name` og skrive ut `Hello, {name}`.<br>
-Dersom ikke komponenten mottar noe name-parameter skal den skrive ut det samme som i oppgave 1.
-
-Lag så en komponent `Helloes` som tar en property `names` og bruker komponenten fra oppgave 2 til å skrive ut `Hello, {name}` på en ny linje for hvert navn i arrayet.
+Create a simple React component that prints "Hello World" to the Document Object Model (the DOM).
 
 #### Tips
 
-`props` brukes til å holde immutable data
+Helpful methods: 
+`React.createClass, React.render`
 
-`render()` må returnere kun én node på toppnivå
+## Oppgave 2: Passing data & using JSX
 
-Husk at man kan bruke vanlig JS i JSX ved å bruke `{ }`
+Expand the component from ex. 1 to take in a property called `name` from its parent and write out "Hello, {name}".<br>
+If the component is not passed a prop it should use "World" as a default value.
 
-Interessante metoder: `Array.prototype.map`
+Next, create a component called `Helloes`that accept a property `names` (array) and utilizes the previous component to write out "Hello, {name}" for each of the names in the `names`-array.
 
-## Oppgave 3: Tilstandsfulle komponenter: Timer
+#### Tips
 
-Lag en komponent `Timer` som skriver ut mengden tid som er gått siden komponenten ble startet. Eksempel:
+`props` are used to pass data from parent to child components - reached via `this.props` and are immutable
+
+`render()` has to return only one node
+
+Remember that you can use ordinary JavaScript in JSX by using `{ }`
+
+Helpful methods: `Array.prototype.map`
+
+
+
+
+## Oppgave 3: Stateful components: Timer
+
+Create a component called `Timer` that prints out the time that has passed since the component was initially rendered. Example:
 
 `I was started 7.8 seconds ago`
 
-Komponenten skal oppdatere seg ti ganger i sekundet, og komponenten skal rydde opp etter seg når den unmountes.
+The component should update itself ten times per second, and the component should perform any necessary cleanup when unmounted, e.g timer methods.
 
 #### Tips
 
-Interessante metoder:
+We use `state` to store our data that changes during the lifetime of a component. It can be accessed through `this.state`
+
+Helpful methods: 
 `setInterval, clearInterval`
 
 Lifecycle hooks:
 `componentDidMount, componentWillUnmount`
 
-## Oppgave 4: Mer tilstand: Sanntidsøk
 
-Lag en komponent `Search` som tar inn et array `items`. Elementene i items er på formen `{ name: "Some string", url: "www.somesite.com" }`
 
-Komponenten skal inneholde et tekstfelt, og endringer i tekstfeltet skal filtrere hvilke av elementene i `items` som vises. Se under for HTML-struktur:
+## Oppgave 4: More state: Real-time search
+
+Create a component `Search`that is passed an array called `items` (a prop). The elements contained in the array will have the following format: `{ name: "Some string", url: "www.somesite.com" }`
+
+The component should include a text field, and the elements in the array should be filtered by which ones contain the current string in the input field. The HTML-structure should look like this:
 
 ```html
 <div>
@@ -96,31 +103,29 @@ Komponenten skal inneholde et tekstfelt, og endringer i tekstfeltet skal filtrer
 		</ul>
 </div>
 ```
-
-Sett også fokus på inputfeltet etter at siden er lastet.
+Also - ensure the input field has focus after the component has been rendered.
 
 #### Tips
 
-Interessante metoder: `String.prototype.match, Array.prototype.filter`
+Helpful methods:  `String.prototype.match, Array.prototype.filter`
 
-Attributter i JSX: `onChange`, `refs`, `className` (da class er et reserved keyword i JS)
-
-
-
---
-# Caseoppgave
-
-Vi skal lage en interaktiv app som benytter blant annet Twitter og Google Maps.
-
-Oppgavebeskrivelsen finner du /case/readme.md.
+Useful attributes i JSX: `onChange`, `refs`, `className` (because `class` is a reserved keyword in JavaScript)
 
 
 
 --
+# Part II: Creating a Twitter Dashboard
 
-## Mer React
+In this section you will create a single-page app that uses real-time data from the Twitter API to monitor activity on the social messaging platform.
 
-Konsepter / API-kall å lese mer om:
+Further instructions are found in `/case/readme.md`.
+
+
+--
+
+## More React
+
+Concepts that could/should be explored further:
 
 * setState() vs replaceState()
 * forceUpdate()
@@ -128,22 +133,13 @@ Konsepter / API-kall å lese mer om:
 * key-attributes
 * reconciliation (diffing)
 
-### Artikler
+### Articles
 
 * [Reacts diff algorithm](http://calendar.perfplanet.com/2013/diff/)
 * [Removing User Interface Complexity, or Why React is Awesome] (http://jlongster.com/Removing-User-Interface-Complexity,-or-Why-React-is-Awesome)
-* [Om ClojureScript og funksjonell programmering i React] (http://blog.getprismatic.com/om-sweet-om-high-functional-frontend-engineering-with-clojurescript-and-react/)
+* [About ClojureScript and functional programming i React] (http://blog.getprismatic.com/om-sweet-om-high-functional-frontend-engineering-with-clojurescript-and-react/)
 
-### Apper
-
-Det finnes få eksempelapper av litt størrelse på nettet. Her er to apper jeg har skrevet det siste halvåret som man kan ta en titt på om man ønsker. Si ifra til meg, så skal dere få tilgang!
-
-* [Banebooking.net](https://www.banebooking.net)
-* [BEKK Fagdag](https://fagdag.bekk.no)
-
-### Videoer
-
-Pete Hunt jobber i Instagram og en av hovedbidragsyterne til React. Han har vært land og strand det siste året og holdt talks. Her er et utdrag:
+### Videos
 
 * [The Secrets of React's Virtual DOM](https://www.youtube.com/watch?v=-DX3vJiqxm4)
 * [Rethinking Best Practices](https://www.youtube.com/watch?v=x7cQ3mrcKaY)

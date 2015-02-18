@@ -62,7 +62,7 @@ wss.on('connection', function(ws) {
 
 function pushTo(ws) {
     return function (tweet) {
-        if (Math.random() > SPEED.MEDIUM) return;
+        if (Math.random() > SPEED.SLOW) return;
         if (tweet.coordinates == null) return;
         if (tweet.place == null) return;
         

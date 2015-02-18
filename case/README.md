@@ -1,14 +1,18 @@
 # Case: Twitter Dashboard
 
-Vi skal lage tidenes Twitter-dashboard!
+In this task you will create a super-cool Twitter Dashboard.
 
-## Oppsett
+## Setup
 
-Gå til https://apps.twitter.com
+The server feeding your app with tweets is already set up, but you need to create a user to gain access:
 
-Trykk "Create new app". Random navn + beskrivelse og "http://example.org" som url.
+### Obtaining access to the API
 
-Gå til "Keys and Access Tokens". Lag "twitter.json" på rot på dette formatet:
+Visit https://apps.twitter.com
+
+Click "Create new app". Choose a random app name and description and use "http://example.org" as app url.
+
+Go to "Keys and Access Tokens". Create "twitter.json" in the root folder of this repo. It should have the following format:
 
 ```
 {
@@ -19,9 +23,9 @@ Gå til "Keys and Access Tokens". Lag "twitter.json" på rot på dette formatet:
 }
 ```
 
-### Utvikling
+### Local setup
 
-Start med
+Start by installing dependencies and starting the development tool:
 
 ```
 npm install
@@ -30,30 +34,28 @@ npm install -g gulp
 gulp watch
 ```
 
-Så i en annen terminal:
+Gulp is a build tool used to transpile our JSX code, minify and concatenate our JavaScript and CSS, amongst other things.
+
+Then do the following in another terminal window:
 
 ```
 node app.js
 ```
 
-Gå til http://localhost:9999/
+Finally open the following URL in your web browser: http://localhost:9999/
 
-## Oppgaver
+## Step-by-step guide
 
-### Oppgave 1: En Tweet-komponent
+### Oppgave 1: Rendering a single tweet
 
-Lag en komponent som tar inn et tweet-objekt og rendrer dette. Bruk
-Tweet-komponenten i Dashboard-komponenten.  Du kan se et eksempel i
-`example_tweet.json`. Eksempel-HTML finner du nederst i oppgaven.
+Create a component that accepts a tweet-object and renders this. Use this component in the premade Dashboard component. An example tweet object is found in `case/task/example_tweet.json`. An example of the HTML your component should output is found at the bottom of this exercise.
 
-Når du har laget Tweet-komponenten kan du sette opp en WebSocket-tilkobling
-mot serveren og starte å motta tweets. Dette kan også gjøres i
-Dashboard-komponenten. Rendre siste mottatte tweet med Tweet-komponenten.
+Afterwards, set up a WebSocket connection to the server in order to receive tweets from the API. This should be done in the Dashboard component. Pass the most recently received tweet to the Tweet component.
 
-Her ser du hvilke lifecycle-metoder som finnes i React:
+Here's a list of lifecycle methods available in React:<br>
 http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods
 
-WebSocket-oppsett:
+This is the code needed to set up a WebSocket connection and receive data:
 
 ```
 var ws = new WebSocket('ws://localhost:9999');
@@ -64,6 +66,7 @@ ws.onmessage = function(ms) {
 
 Komponenten bør ha følgende HTML-struktur (da får du med litt
 gratis CSS på kjøpet):
+The Tweet component should have the following HTML structure (which gives you some free CSS)
 
 ```html
 <div class="tweet">
@@ -74,7 +77,7 @@ gratis CSS på kjøpet):
         <a class="tweet-save-button">Save</a>
     </div>
 
-    <div class="tweet-text">Halla på'rræ</div>
+    <div class="tweet-text">Hello, fellow developers!</div>
     <div class="tweet-stats">
         <span class="tweet-user-followers">
             <strong>12,058</strong>
@@ -87,29 +90,28 @@ gratis CSS på kjøpet):
 </div>
 ```
 
-Legg merke til flagget som har klassen `flag-icon-no`, der de
-to siste bokstavene er landskoden (f.eks. `no` for Norge).
+Take note of the element with the class `flag-icon-no`, where the two last letters incide the country code of the tweets' origin. (i.e `no` for Norge).
 
-### Oppgave 2: TweetList
+### Oppgave 2: A list of tweets
 
-Utvid til å rendre en liste med alle mottatte tweets. `<ul>`-en
-bør ha klassen `.tweetlist`.
+Expand the component to render a list of all received tweets in a `<ul>´. This list should have the class `.tweetlist`.
 
-På sikt (ganske raskt, faktisk) vil vi få mange tweets, så
-endre til å kun vise de tre siste.
+Afterwards, limit the list to only show the three last tweets.
 
-Flytt dette ut i egen komponent `TweetList`.
+Move all this logic into a new component `TweetList`.
+
+Note: you should still use the `Tweet` component created earlier to render each individual tweet.
 
 ### Oppgave 3: TweetMap
 
-Nå skal vi legge til et kart! Du finner endel komponenter på
-f.eks. http://react-components.com. Der ligger også
-react-googlemaps (hint, hint).
+Time to plot where on earth all these tweets are coming from!
 
-Lag en kart-komponent. Vi anbefaler å wrappe kartet i en div med
-klassen `tweet-map`.
+You can find plenty of components made by other people at http://react-components.com.
+Use the component called `react-googlemaps`.
 
-Følgende innstillinger danner et godt utgangspunkt:
+Create a map component. The top-level div should have the CSS class `tweet-map`.
+
+The current map settings will suffice:
 
 ```
 initialZoom: 3
@@ -120,29 +122,22 @@ zoomControl: false
 mapTypeControl: false
 initialCenter: 30.675226, -35.051272
 ```
+Each tweet has geoposition data. Use this to place markers on the map.
 
-Hver tweet inneholder sin geo-posisjon. Bruk dette til å
-plassere markører på kartet.
+Now we can turn up the rate of tweets we receive. In `app.js`, change the value on line 65 from `SPEED.SLOW` to `SPEED.MEDIUM`.
 
-Nå kan vi skru opp dampen på antall tweets per sekund. Endre hastigheten i
-`app.js` til `SPEED.MEDIUM`. For å ikke kræsje browseren kan det være lurt å
-begrense antall tweets som vises (ellers gjør laptop-en din til helikopter).
-Hundre siste tweets er et bra utgangspunkt.
+It can be wise to only use, lets say, the last hundred received tweets in order to avoid your computer from crashing due to the vast amounts of data.
 
 ### Oppgave 4: InfluentialTweets
 
-Nå som vi får vesentlig flere tweets blir det vanskelig å lese tweetene i
-`TweetList`. Endre til å at de tre tweetene som vises kommer fra brukerne med
-flest følgere blant de hundre som vises.
+Now that we are receiving way more tweets, it is becoming harder to read the tweets in our `TweetList`. Change this component to show the three tweets that has the most followers amongst the last hundred that are shown.
 
 ### Oppgave 5: CurrentTweet
 
-Ved å klikke på en markør skal valgte tweet vises. Det kan være hensiktsmessig
-å lage en egen komponent som bruker `Tweet`-komponenten internt. For litt
-gratis CSS, bruk `.current-tweet`.
+We want to to be able to click on one of our map markers in order to that exact tweet. Make a new component `CurrentTweet` that wraps a `Tweet`component. For some free styling, use the class `.current-tweet`.
 
-Den valgte tweeten skal ha en egen farge på markøren. Markørobjektet har en
-property `icon` som tar inn en bildeurl. Her kan du velge blant for eksempel:
+The selected tweet should have its own marker color. The marker object has a prop called "icon" that accepts an image url. Here are some suitable images:
+
 
 ```
 http://maps.google.com/mapfiles/ms/icons/red-dot.png
@@ -153,21 +148,15 @@ http://maps.google.com/mapfiles/ms/icons/green-dot.png
 
 ### Oppgave 6: shouldComponentUpdate
 
-Med mange innkommende tweets kan det være lurt å hjelpe React med å forstå når
-man i det hele tatt trenger å sjekke om en komponent har endringer som skal
-rendres til DOM-en. (Altså når et nytt render-kall ikke medfører endringer som
-skal rendres.)
+Considering the amount of incoming tweets, it could be wise to help React understand whether it needs to check if a component has changes that should be rendered to the DOM. (That is, when a call to render() would produce the same output as the previous call).
 
-Skriv en `console.log` i `render`-metoden på `CurrentTweet`-komponenten og se
-hvor ofte denne kalles. Vi ønsker at den kun skal rendre én gang for hver gang
-vi velger en ny tweet. Til dette kan vi bruke lifecycle-metoden `shouldComponentUpdate`.
+By using `console.log` in the `render`-method of our `CurrentTweet` component, we can see how often it is called. Check this again after having implemented the lifecycle method `shouldComponentUpdate`. See the docs for how this works.
 
 ### Oppgave 7: App Header
 
-Appen vår må ha en fet tittel, og vise hvor mange sekunder den har kjørt og
-antall tweets den har prosessert. Lag en headerkomponent. Her finner du litt
-basis-HTML, som blant annet viser eksempel på HTML-struktur på kjøretid og
-antall tweets.
+Our app needs a header. In addition to showing the app name (which is yours to decide), it shall display the number of seconds that has passed since it started running (sounds familiar?) and the number of tweets it has processed.
+
+The HTML could look something like this:
 
 ```html
 <div class="app-header">
@@ -176,16 +165,14 @@ antall tweets.
         <span class="tweet-stats-desc">seconds running</span>
         <strong>12</strong>
     </div>
+    (similar for no. of tweets)
 </div>
 ```
+Remember to reuse the `Timer` component you created earlier!
 
-Her kan du gjenbruke komponenten fra `Timer`-oppgaven!
+### Oppgave 8: Country statistics
 
-### Oppgave 8: Landstatistikk
-
-Vi har lyst til å rangere landene etter flest publiserte tweets. Lag en
-komponent `CountryList` som gjør dette. Denne statistikken skal baseres på alle
-tweets, ikke kun de siste hundre.
+We would like to display which countries that create the highest number of tweets. Create a component `CountryList` that does exactly this. It should take into account all tweets ever received, not just the last hundred.
 
 ```html
 <ul class="country-list">
@@ -198,50 +185,6 @@ tweets, ikke kun de siste hundre.
 
 ### Oppgave 9: Refaktorering
 
-Vi har nå implementert flaggvisning to forskjellige steder. Skill dette ut i en
-egen komponent `Flag`.
+We are now displaying small flag icons at two different places in our app. It is not beneficial to have code duplication, as we should try to keep ourselves DRY (dont repeat yourself). 
 
-### Oppgave 10: Save tweets
-
-Nå har vi sykt lyst til å lagre kule tweets. Dette gjøres ved å
-trykke på "Save"-knappen på en tweet. Som en start kan du
-`console.log`-e lagrede tweets.  Men etter det er det på tide å
-se på routing og å kunne gå til en egen side som viser alle
-lagrede tweets.
-
-Det finnes mange routing-biblioteker, for eksempel
-[Backbone](http://backbonejs.org/#Router) or
-[page.js](https://github.com/visionmedia/page.js).
-
-Dette er en mulig måte å håndtere routing (med page.js):
-
-```javascript
-componentDidMount: function () {
-    page('/', function() {
-        this.setState({ route: 'root' });
-    }.bind(this));
-
-    page('/starred', function() {
-        this.setState({ route: 'starred' });
-    }.bind(this));
-
-    page();
-},
-
-render: function() {
-    switch(this.state.route) {
-        case 'starred':
-            return <StarredTweets />
-
-        default:
-            return <Dashboard />
-    }
-}
-```
-
-Til slutt kan du også lagre i og hente fra localstorage.
-
-### Oppgave 11: DIY
-
-Gjør noe fett og gled deg til ølfestival!
-
+Refactor this to use the same component - a `Flag` component.
