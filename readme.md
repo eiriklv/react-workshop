@@ -80,7 +80,7 @@ Interessante metoder:
 `setInterval, clearInterval`
 
 Lifecycle hooks:
-`componentDidMount, componentDidUnmount`
+`componentDidMount, componentWillUnmount`
 
 ## Oppgave 4: Mer tilstand: Sanntidsøk
 
