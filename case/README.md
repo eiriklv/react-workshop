@@ -174,6 +174,8 @@ Remember to reuse the `Timer` component you created earlier!
 
 We would like to display which countries that create the highest number of tweets. Create a component `CountryList` that does exactly this. It should take into account all tweets ever received, not just the last hundred.
 
+The HTML could look like this:
+
 ```html
 <ul class="country-list">
     <li>

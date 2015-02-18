@@ -1,6 +1,6 @@
 # Frontendworkshop 19.02.15
 
-Slides from the presentation are available here [her](https://github.com/ewendel/react-workshop/blob/master/slides/slides.pdf?raw=true)
+Slides from the presentation are available [here](https://github.com/ewendel/react-workshop/blob/master/slides/slides.pdf?raw=true)
 
 ## Instructions
 
